@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/simpleservelet")
+@WebServlet("/simpleservlet")
 public class SimpleServlet extends HttpServlet {
 
     @Override
@@ -20,3 +20,4 @@ public class SimpleServlet extends HttpServlet {
 
     }
 }
+ 

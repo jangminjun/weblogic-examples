@@ -12,6 +12,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>com.oracle.weblogic.examples.simple.SimpleServlet</servlet-name>
-        <url-pattern>/simpleservelet/*</url-pattern>
+        <url-pattern>/simpleservlet/*</url-pattern>
     </servlet-mapping>
 </web-app>
