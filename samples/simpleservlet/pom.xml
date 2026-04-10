@@ -110,30 +110,27 @@
       <build>
         <plugins>
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <version>3.1.0</version>
+            <groupId>org.wildfly.plugins</groupId>
+            <artifactId>wildfly-maven-plugin</artifactId>
+            <version>4.2.2.Final</version>
             <executions>
               <execution>
-                <id>provision-server</id>
-                <phase>package</phase>
                 <goals>
-                  <goal>run</goal>
+                  <goal>package</goal>
                 </goals>
-                <configuration>
-                  <target>
-                    <mkdir dir="${project.build.directory}/server/deployments"/>
-                    <copy file="${project.build.directory}/${project.build.finalName}.war"
-                          todir="${project.build.directory}/server/deployments"/>
-                    <echo file="${project.build.directory}/server/provisioned">server provisioned</echo>
-                    <mkdir dir="/opt/server/deployments" failonerror="false"/>
-                    <copy file="${project.build.directory}/${project.build.finalName}.war"
-                          todir="/opt/server/deployments" failonerror="false"/>
-                    <echo file="/opt/server/provisioned" failonerror="false">server provisioned</echo>
-                  </target>
-                </configuration>
               </execution>
             </executions>
+            <configuration>
+              <provisioning-dir>server</provisioning-dir>
+              <feature-packs>
+                <feature-pack>
+                  <location>org.jboss.eap:wildfly-ee-galleon-pack</location>
+                </feature-pack>
+              </feature-packs>
+              <layers>
+                <layer>cloud-server</layer>
+              </layers>
+            </configuration>
           </plugin>
         </plugins>
       </build>
