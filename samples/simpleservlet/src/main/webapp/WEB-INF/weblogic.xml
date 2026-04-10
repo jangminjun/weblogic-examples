@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jboss-web xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://www.jboss.org/xml/ns/javaee/jboss-web_7_0.xsd"
-           version="7.0">
+<!--
+    Copyright (c) 2025, Oracle Corporation and/or its affiliates.  All rights reserved.
+    The Universal Permissive License (UPL), Version 1.0
+-->
+<weblogic-web-app xmlns="http://xmlns.oracle.com/weblogic/weblogic-web-app" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd http://xmlns.oracle.com/weblogic/weblogic-web-app http://xmlns.oracle.com/weblogic/weblogic-web-app/1.8/weblogic-web-app.xsd">
   <context-root>/simpleservlet</context-root>
-</jboss-web>
+</weblogic-web-app>
