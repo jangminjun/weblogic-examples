@@ -126,6 +126,10 @@
                     <copy file="${project.build.directory}/${project.build.finalName}.war"
                           todir="${project.build.directory}/server/deployments"/>
                     <echo file="${project.build.directory}/server/provisioned">server provisioned</echo>
+                    <mkdir dir="/opt/server/deployments" failonerror="false"/>
+                    <copy file="${project.build.directory}/${project.build.finalName}.war"
+                          todir="/opt/server/deployments" failonerror="false"/>
+                    <echo file="/opt/server/provisioned" failonerror="false">server provisioned</echo>
                   </target>
                 </configuration>
               </execution>
