@@ -71,6 +71,9 @@
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>3.3.0</version>
+          <configuration>
+            <argLine>--add-opens java.base/java.util=ALL-UNNAMED</argLine>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
@@ -79,9 +82,10 @@
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
           <version>3.1.2</version>
-          <configuration>
-            <argLine>--add-opens java.base/java.util=ALL-UNNAMED</argLine>
-          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>3.4.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-deploy-plugin</artifactId>
@@ -99,4 +103,67 @@
       </plugins>
     </pluginManagement>
   </build>
+
+  <profiles>
+    <profile>
+      <id>openshift</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.wildfly.plugins</groupId>
+            <artifactId>wildfly-maven-plugin</artifactId>
+            <version>4.2.2.Final</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>package</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <provisioning-dir>server</provisioning-dir>
+                <feature-packs>
+                    <feature-pack>
+                        <groupId>org.jboss.eap</groupId>
+                        <artifactId>wildfly-ee-galleon-pack</artifactId>
+                        <version>8.0.0.GA-redhat-00007</version> 
+                    </feature-pack>
+                </feature-packs>
+                <layers>
+                    <layer>cloud-server</layer>
+                </layers>
+                <filename>${project.build.finalName}.war</filename>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+  <repositories>
+    <repository>
+        <id>redhat-ga-repository</id>
+        <name>Red Hat GA Repository</name>
+        <url>https://maven.repository.redhat.com/ga/</url>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+      <pluginRepository>
+          <id>redhat-ga-plugin-repository</id>
+          <name>Red Hat GA Plugin Repository</name>
+          <url>https://maven.repository.redhat.com/ga/</url>
+          <releases>
+              <enabled>true</enabled>
+          </releases>
+          <snapshots>
+              <enabled>false</enabled>
+          </snapshots>
+      </pluginRepository>
+  </pluginRepositories>
 </project>
