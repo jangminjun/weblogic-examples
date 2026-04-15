@@ -19,23 +19,8 @@
     <maven.compiler.release>17</maven.compiler.release>
   </properties>
 
-  <repositories>
-    <repository>
-      <id>redhat-ga</id>
-      <name>Red Hat GA Repository</name>
-      <url>https://maven.repository.redhat.com/ga/</url>
-    </repository>
-  </repositories>
-
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>org.jboss.eap</groupId>
-        <artifactId>wildfly-ee-galleon-pack</artifactId>
-        <version>8.0.0.GA-redhat-00007</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
@@ -108,53 +93,7 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.6.1</version>
         </plugin>
-        <plugin>
-          <artifactId>maven-war-plugin</artifactId>
-          <version>3.3.2</version>
-        </plugin>
       </plugins>
     </pluginManagement>
   </build>
-
-  <profiles>
-    <profile>
-      <id>openshift</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.jboss.galleon</groupId>
-            <artifactId>galleon-maven-plugin</artifactId>
-            <version>5.2.0.Final</version>
-            <executions>
-              <execution>
-                <id>server-provisioning</id>
-                <phase>generate-resources</phase>
-                <goals>
-                  <goal>provision</goal>
-                </goals>
-                <configuration>
-                  <install-dir>${project.build.directory}/server</install-dir>
-                  <feature-packs>
-                    <feature-pack>
-                      <groupId>org.jboss.eap</groupId>
-                      <artifactId>wildfly-ee-galleon-pack</artifactId>
-                      <version>8.0.0.GA-redhat-00007</version>
-                    </feature-pack>
-                  </feature-packs>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-war-plugin</artifactId>
-            <version>3.3.2</version>
-            <configuration>
-              <outputDirectory>${project.build.directory}/server/standalone/deployments</outputDirectory>
-              <warName>ROOT</warName>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 </project>
