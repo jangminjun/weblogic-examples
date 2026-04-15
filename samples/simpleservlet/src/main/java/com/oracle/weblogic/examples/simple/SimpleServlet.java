@@ -19,4 +19,4 @@ public class SimpleServlet extends HttpServlet {
         resp.getOutputStream().println("You just reached the simpleservelet");
 
     }
-}
+} 
